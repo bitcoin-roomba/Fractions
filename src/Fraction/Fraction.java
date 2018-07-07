@@ -2,8 +2,8 @@ package Fraction;
 import java.math.BigInteger;
 
 /**
- * @author yeetboi
- * 
+ * @author yeet-hard-yote-harder
+ * Fraction class for Java, allows arithmetic with other fractions and integers. As of yet completely untested and mostly undocumented
  * 
  *
  */
@@ -89,11 +89,7 @@ public class Fraction {
 	}
 	
 	public int lowestCommonDenominator(Fraction other) {
-		Fraction a = new Fraction(this.numerator, this.denominator);
-		Fraction b = new Fraction(other.numerator, other.denominator);
-		a.simplify();
-		b.simplify();
-		return (a.denominator * b.denominator);
+		return (this.simplify().denominator * other.simplify().denominator);
 	}
 	
 	
