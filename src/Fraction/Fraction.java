@@ -3,8 +3,8 @@ import java.math.BigInteger;
 
 /**
  * @author yeet-hard-yote-harder
- * Fraction class for Java, allows arithmetic with other fractions and integers. As of yet completely untested and mostly undocumented
- * 
+ * Fraction class for Java, allows arithmetic with other fractions and integers, as well as some other utility. As of yet completely untested and mostly undocumented.
+ * Fractions are immutable.
  *
  */
 public class Fraction {
@@ -23,6 +23,12 @@ public class Fraction {
 	
 	
 	//constructors
+	/**
+	 * Creates a Fraction with a numerator and a denominator, as such that Fraction(x,y) would be equivalent to x/y.
+	 * @throws IllegalArgumentException if denominator == 0
+	 * @param numerator the numerator
+	 * @param denominator the denominator
+	 */
 	public Fraction(int numerator, int denominator) {
 		if (denominator == 0) {
 			throw new IllegalArgumentException("divide by zero");
@@ -31,12 +37,20 @@ public class Fraction {
 		this.denominator = denominator;
 	}
 	
+	/**
+	 * Creates a fraction out of an integer, as such that an integer x would be expressed as x/1
+	 * @param number Integer
+	 */
 	public Fraction(int number) {
 		this.numerator = number;
 		this.denominator = 1;
 	}
 	
 	//operations
+	/**
+	 * Simplifies the fraction as far as possible. E.g. Fraction(6, 8).simplify returns Fraction (3, 4) as 6/8 == 3/4
+	 * @return simplified Fraction
+	 */
 	public Fraction simplify() {
 		BigInteger num = BigInteger.valueOf(this.numerator);
 	    BigInteger den = BigInteger.valueOf(this.denominator);
@@ -44,18 +58,38 @@ public class Fraction {
 	    return new Fraction(this.numerator / gcd.intValueExact(), this.denominator / gcd.intValueExact());
 	}
 	
+	/**
+	 * Checks if the fraction can be expressed as an integer, e.g. 4/4 or 9/9. If true, Fraction x is equivalent to x.getNumerator()
+	 * @return Returns true if the fraction can be expressed as an integer
+	 */
 	public boolean isInteger() {
 		return this.numerator == this.denominator;
 	}
-		
+	
+	/**
+	 * Multiplies the Fraction with another Fraction.
+	 * @param factor other Fraction
+	 * @return product of both fractions
+	 */
 	public Fraction multiply(Fraction factor) {
 		return new Fraction(this.numerator * factor.numerator, this.denominator * factor.denominator);
 	}
 	
+	/**
+	 * Multiplies the Fraction with an integer
+	 * @param factor integer
+	 * @return Product of fraction and integer
+	 */
 	public Fraction multiply(int factor) {
 		return new Fraction(this.numerator * factor, this.denominator);
 	}
 	
+	/**
+	 * Divides the Fraction by another Fraction.
+	 * @throws IllegalArgumentException if the divisor is equal to zero e.g. divisor = 0/2
+	 * @param divisor divisor, fraction to be divided by.
+	 * @return Quotient of this and divisor
+	 */
 	public Fraction divide(Fraction divisor) {
 		if (divisor.getNumerator() == 0) {
 			throw new IllegalArgumentException("divide by zero");
@@ -63,6 +97,12 @@ public class Fraction {
 		return new Fraction(this.numerator * divisor.denominator, this.denominator * divisor.numerator);
 	}
 	
+	/**
+	 * Divides the Fraction by an integer
+	 * @throws IllegalArgumentException if divisor == 0
+	 * @param divisor divisor, integer to be divided by.
+	 * @return Quotient of this and divisor
+	 */
 	public Fraction divide(int divisor) {
 		if (divisor == 0) {
 			throw new IllegalArgumentException("divide by zero");
@@ -70,22 +110,47 @@ public class Fraction {
 		return new Fraction(this.numerator, this.denominator * divisor);
 	}
 	
+	/**
+	 * Adds a Fraction to another Fraction
+	 * @param summand Fraction to be added to this
+	 * @return sum of both fractions
+	 */
 	public Fraction add(Fraction summand) {
 		return new Fraction((this.numerator * summand.denominator) + (summand.numerator * this.denominator), this.denominator * summand.denominator);
 	}
 	
+	/**
+	 * Subtracts a Fraction from this Fraction
+	 * @param subtrahend Fraction to be subtracted from this
+	 * @return difference of both fractions, (this - subtrahend)
+	 */
 	public Fraction subtract(Fraction subtrahend) {
 		return new Fraction((this.numerator * subtrahend.denominator) - (subtrahend.numerator * this.denominator), this.denominator * subtrahend.denominator);
 	}
 	
+	/**
+	 * Adds an integer to a Fraction
+	 * @param summand integer to be added to this
+	 * @return sum of fraction and integer
+	 */
 	public Fraction add(int summand) {
 		return new Fraction(this.numerator + (this.denominator * summand), this.denominator);
 	}
 	
+	/**
+	 * Subtracts an integer from a Fraction
+	 * @param subtrahend integer to be subtracted from this
+	 * @return difference between fraction and integer (this - subtrahend)
+	 */
 	public Fraction subtract(int subtrahend) {
 		return new Fraction(this.numerator - (this.denominator * subtrahend), this.denominator);
 	}
 	
+	/**
+	 * Finds the lowest common denominator between this and another fraction.
+	 * @param other other fraction
+	 * @return lowest common denominator as integer
+	 */
 	public int lowestCommonDenominator(Fraction other) {
 		return (this.simplify().denominator * other.simplify().denominator);
 	}
