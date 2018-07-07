@@ -3,8 +3,8 @@ import java.math.BigInteger;
 
 /**
  * @author yeetboi
- * All static methods offer the same functionality as their nonstatic counterparts but without modifying input variables unlike their nonstatic counterparts, 
- * which will modify the calling instance. Fraction.lowestCommonDenominator, despite being nonstatic, does not modify input variables.
+ * 
+ * 
  *
  */
 public class Fraction {
@@ -12,22 +12,15 @@ public class Fraction {
 	private int numerator;
 	private int denominator;
 	
-	//getters, setters
+	//getters
 	public int getNumerator() {
 		return numerator;
 	}
-	public void setNumerator(int numerator) {
-		this.numerator = numerator;
-	}
+	
 	public int getDenominator() {
 		return denominator;
 	}
-	public void setDenominator(int denominator) {
-		if (denominator == 0) {
-			throw new IllegalArgumentException("divide by zero");
-		}
-		this.denominator = denominator;
-	}
+	
 	
 	//constructors
 	public Fraction(int numerator, int denominator) {
