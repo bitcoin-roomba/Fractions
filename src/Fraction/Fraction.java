@@ -44,66 +44,55 @@ public class Fraction {
 	}
 	
 	//nonstatic methods
-	public void simplify() {
+	public Fraction simplify() {
 		BigInteger num = BigInteger.valueOf(this.numerator);
 	    BigInteger den = BigInteger.valueOf(this.denominator);
 	    BigInteger gcd = num.gcd(den);
-	    this.numerator /= gcd.intValueExact();
-	    this.denominator /= gcd.intValueExact();
+	    return new Fraction(this.numerator / gcd.intValueExact(), this.denominator / gcd.intValueExact());
 	}
 	
 	public boolean isInteger() {
 		return this.numerator == this.denominator;
 	}
 		
-	public void multiply(Fraction factor) {
+	public Fraction multiply(Fraction factor) {
 		this.numerator *= factor.numerator;
 		this.denominator *= factor.denominator;
+		return new Fraction(this.numerator * factor.numerator, this.denominator * factor.denominator);
 	}
 	
-	public void multiply(int factor) {
-		this.numerator *= factor;
+	public Fraction multiply(int factor) {
+		return new Fraction(this.numerator * factor, this.denominator);
 	}
 	
-	public void divide(Fraction divisor) {
+	public Fraction divide(Fraction divisor) {
 		if (divisor.getNumerator() == 0) {
 			throw new IllegalArgumentException("divide by zero");
 		}
-		this.numerator *= divisor.denominator;
-		this.denominator *= divisor.numerator;
+		return new Fraction(this.numerator * divisor.denominator, this.denominator * divisor.numerator);
 	}
 	
-	public void divide(int divisor) {
+	public Fraction divide(int divisor) {
 		if (divisor == 0) {
 			throw new IllegalArgumentException("divide by zero");
 		}
-		this.denominator *= divisor;
+		return new Fraction(this.numerator, this.denominator * divisor);
 	}
 	
-	public void add(Fraction summand) {
-		int den1 = this.denominator;
-		this.denominator *= summand.denominator;
-		this.numerator *= summand.denominator;
-		summand.denominator *= den1;
-		summand.numerator *= den1;
-		this.numerator += summand.numerator;
+	public Fraction add(Fraction summand) {
+		return new Fraction((this.numerator * summand.denominator) + (summand.numerator * this.denominator), this.denominator * summand.denominator);
 	}
 	
-	public void subtract(Fraction subtrahend) {
-		int den1 = this.denominator;
-		this.denominator *= subtrahend.denominator;
-		this.numerator *= subtrahend.denominator;
-		subtrahend.denominator *= den1;
-		subtrahend.numerator *= den1;
-		this.numerator -= subtrahend.numerator;
+	public Fraction subtract(Fraction subtrahend) {
+		return new Fraction((this.numerator * subtrahend.denominator) - (subtrahend.numerator * this.denominator), this.denominator * subtrahend.denominator);
 	}
 	
-	public void add(int summand) {
-		this.numerator += (this.denominator * summand);
+	public Fraction add(int summand) {
+		return new Fraction(this.numerator + (this.denominator * summand), this.denominator);
 	}
 	
-	public void subtract(int subtrahend) {
-		this.numerator -= (this.denominator * subtrahend);
+	public Fraction subtract(int subtrahend) {
+		return new Fraction(this.numerator - (this.denominator * subtrahend), this.denominator);
 	}
 	
 	public int lowestCommonDenominator(Fraction other) {
