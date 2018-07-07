@@ -155,5 +155,17 @@ public class Fraction {
 		return (this.simplify().denominator * other.simplify().denominator);
 	}
 	
+	/**
+	 * Returns the inverse of the fraction if fraction is nonzero, such that for a fraction x, x * x.inverse() is equivalent to 1
+	 * @throws IllegalArgumentException if fraction is equivalent to zero 
+	 * @return Inverse of this
+	 */
+	public Fraction inverse() {
+		if (this.numerator == 0) {
+			throw new IllegalArgumentException("divide by zero");
+		}
+		return new Fraction(this.denominator, this.numerator);
+	}
+	
 	
 }
