@@ -49,8 +49,6 @@ public class Fraction {
 	}
 		
 	public Fraction multiply(Fraction factor) {
-		this.numerator *= factor.numerator;
-		this.denominator *= factor.denominator;
 		return new Fraction(this.numerator * factor.numerator, this.denominator * factor.denominator);
 	}
 	
