@@ -36,7 +36,7 @@ public class Fraction {
 		this.denominator = 1;
 	}
 	
-	//nonstatic methods
+	//operations
 	public Fraction simplify() {
 		BigInteger num = BigInteger.valueOf(this.numerator);
 	    BigInteger den = BigInteger.valueOf(this.denominator);
@@ -95,58 +95,6 @@ public class Fraction {
 		b.simplify();
 		return (a.denominator * b.denominator);
 	}
-	
-	
-	//static methods
-	static Fraction multiply(Fraction a, Fraction b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.multiply(b);
-		return res;
-	}
-	
-	static Fraction multiply(Fraction a, int b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.multiply(b);
-		return res;
-	}
-	
-	static Fraction divide(Fraction a, Fraction b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.divide(b);
-		return res;
-	}
-	
-	static Fraction divide(Fraction a, int b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.divide(b);
-		return res;
-	}
-	
-	static Fraction add(Fraction a, Fraction b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.add(b);
-		return res;
-	}
-	
-	static Fraction add(Fraction a, int b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.add(b);
-		return res;
-	}
-	
-	static Fraction subtract(Fraction a, Fraction b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.subtract(b);
-		return res;
-	}
-	
-	static Fraction subtract(Fraction a, int b) {
-		Fraction res = new Fraction(a.getNumerator(), a.getDenominator());
-		res.subtract(b);
-		return res;
-	}
-	
-	
 	
 	
 }
