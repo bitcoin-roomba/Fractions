@@ -52,6 +52,9 @@ public class Fraction {
 	 * @return simplified Fraction
 	 */
 	public Fraction simplify() {
+		if (this.numerator == 0) {
+			return new Fraction(0);
+		}
 		BigInteger num = BigInteger.valueOf(this.numerator);
 	    BigInteger den = BigInteger.valueOf(this.denominator);
 	    BigInteger gcd = num.gcd(den);
