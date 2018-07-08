@@ -1,5 +1,6 @@
 package Fraction;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * @author bitcoin-roomba
@@ -191,6 +192,27 @@ public class Fraction {
 			out = out.simplify();
 		}
 		return out;
+	}
+	
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other == this) {
+			return true;
+		}
+		if (!(other instanceof Fraction)) {
+			return false;
+		}
+		Fraction check = (Fraction) other;
+		check = check.simplify();
+		Fraction current = this.simplify();
+		return(current.numerator == check.numerator && current.denominator == check.denominator);
+	}
+	
+	@Override
+	public int hashCode() {
+		Fraction check = this.simplify();
+		return Objects.hash(check.numerator, check.denominator);
 	}
 	
 	

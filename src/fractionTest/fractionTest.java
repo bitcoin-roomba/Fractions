@@ -101,4 +101,26 @@ class fractionTest {
 		Fraction res = a.pow(-3);
 		assertTrue(res.getNumerator()==8 && res.getDenominator()==1);
 	}
+	
+	@Test
+	public void equalsTest() {
+		assertTrue(new Fraction(1,2).equals(new Fraction(2,4)));
+	}
+	
+	@Test
+	public void unequalsTest() {
+		assertFalse(new Fraction(1,2).equals(new Fraction(3,4)));
+	}
+	
+	@Test
+	public void hashEquivalencyTest() {
+		assertTrue((new Fraction(1, 2)).hashCode() == (new Fraction(2,4)).hashCode());
+	}
+	
+	@Test
+	public void hashConsistencyTest() {
+		assertTrue((new Fraction(1, 2)).hashCode() == (new Fraction(1,2)).hashCode());
+	}
+	
+	
 }
