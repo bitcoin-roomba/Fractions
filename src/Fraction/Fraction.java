@@ -2,7 +2,7 @@ package Fraction;
 import java.math.BigInteger;
 
 /**
- * @author yeet-hard-yote-harder
+ * @author bitcoin-roomba
  * Fraction class for Java, allows arithmetic with other fractions and integers, as well as some other utility. As of yet completely untested and mostly undocumented.
  * Fractions are immutable.
  *
@@ -171,7 +171,7 @@ public class Fraction {
 	}
 	
 	/**
-	 * Raises a fraction to the power of an integer
+	 * Raises a fraction to the power of an integer, simplifies as far as possible
 	 * @throws IllegalArgumentException if fraction equivalent to 0 AND exponent is negative
 	 * @param exponent power to raise to
 	 * @return this to the power of exponent
@@ -193,6 +193,6 @@ public class Fraction {
 		return out;
 	}
 	
-	//TODO fractional power
+	
 	
 }
