@@ -178,9 +178,9 @@ public class Fraction {
 	 */
 	public Fraction pow(int exponent) {
 		if (exponent >= 0) {
-			return pospow(this, exponent);
+			return pospow(this.simplify(), exponent);
 		}
-		else return pospow(this.inverse(), -exponent);
+		else return pospow(this.inverse().simplify(), -exponent);
 	}
 	//pow for nonnegative exponents
 	private Fraction pospow(Fraction f, int exp) {
