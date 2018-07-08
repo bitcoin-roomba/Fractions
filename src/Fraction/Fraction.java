@@ -167,5 +167,29 @@ public class Fraction {
 		return new Fraction(this.denominator, this.numerator);
 	}
 	
+	/**
+	 * Raises a fraction to the power of an integer
+	 * @throws IllegalArgumentException if fraction equivalent to 0 AND exponent is negative
+	 * @param exponent power to raise to
+	 * @return this to the power of exponent
+	 */
+	public Fraction pow(int exponent) {
+		if (exponent >= 0) {
+			return pospow(this, exponent);
+		}
+		else return pospow(this.inverse(), -exponent);
+	}
+	//pow for nonnegative exponents
+	private Fraction pospow(Fraction f, int exp) {
+		Fraction out = new Fraction(1);
+		for (int i = 1; i <= exp; i++) {
+			out = out.multiply(f);
+			//simplify to maximise usage of 32 bit int
+			out = out.simplify();
+		}
+		return out;
+	}
+	
+	//TODO fractional power
 	
 }
